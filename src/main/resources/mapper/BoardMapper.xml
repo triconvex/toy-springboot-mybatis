@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.zingoworks.springbootmybatis.board.BoardMapper">
+
+    <select id="findById" parameterType="java.lang.Long" resultType="io.zingoworks.springbootmybatis.board.Board">
+        SELECT * FROM BOARD AS b WHERE b.ID = #{id}
+    </select>
+
+    <insert id="createBoard" parameterType="io.zingoworks.springbootmybatis.board.Board">
+        INSERT INTO BOARD (ID, TITLE, CONTENT)
+        VALUES (
+                #{id},
+                #{title},
+                #{content}
+                )
+    </insert>
+
+</mapper>
