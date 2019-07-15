@@ -32,9 +32,8 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<!--runtime? compile?-->
 			<version>1.4.193</version>
-			<scope>compile</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>

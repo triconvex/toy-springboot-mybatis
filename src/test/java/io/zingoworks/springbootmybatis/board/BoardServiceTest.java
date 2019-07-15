@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest()
 @RunWith(SpringRunner.class)
@@ -18,8 +18,34 @@ public class BoardServiceTest {
     @Autowired
     private BoardService boardService;
 
+    @Order(1)
+    @Test
+    public void 게시물_작성() {
+
+    }
+
+    @Order(2)
+    @Test
+    public void 게시물_조회() {
+
+    }
+
+    @Order(3)
+    @Test
+    public void 게시물_수정() {
+
+    }
+
+    @Order(4)
+    @Test
+    public void 게시물_삭제() {
+
+    }
+
     @Test
     public void test() {
+        log.debug("test");
+
         Board board = new Board(1L, "title", "content");
         boardService.createBoard(board);
         board = new Board(2L, "new title", "new content");
