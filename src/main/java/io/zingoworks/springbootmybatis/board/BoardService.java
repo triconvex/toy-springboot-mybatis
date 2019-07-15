@@ -6,20 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BoardService {
+public class BoardService implements BoardMapper {
 
     private static final Logger log = LoggerFactory.getLogger(BoardService.class);
 
-    @Autowired
-    private BoardMapper boardMapper;
+    private final BoardMapper boardMapper;
 
-    public void createBoard(Board board) {
-        log.debug("board created!");
-        boardMapper.createBoard(board);
+    @Autowired
+    public BoardService(BoardMapper boardMapper) {
+        this.boardMapper = boardMapper;
     }
 
+    @Override
+    public void create(Board board) {
+        boardMapper.create(board);
+    }
+
+    @Override
     public Board findById(long id) {
         return boardMapper.findById(id);
+    }
+
+    @Override
+    public void update(Board board) {
+        boardMapper.update(board);
+    }
+
+    @Override
+    public void delete(long id) {
+        boardMapper.delete(id);
     }
 
 }

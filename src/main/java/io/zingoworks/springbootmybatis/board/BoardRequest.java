@@ -1,28 +1,16 @@
 package io.zingoworks.springbootmybatis.board;
 
-public class Board {
+public class BoardRequest {
 
-    private long id;
     private String title;
     private String content;
 
-    public Board(String title, String content) {
+    //??? 디폴트생성자 필요한 경우, 필요하지 않은 경우 구분
+    protected BoardRequest() {}
+
+    public BoardRequest(String title, String content) {
         this.title = title;
         this.content = content;
-    }
-
-    public Board(long id, String title, String content) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -41,11 +29,14 @@ public class Board {
         this.content = content;
     }
 
+    public Board toBoard() {
+        return new Board(title, content);
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Board{");
-        sb.append("id=").append(id);
-        sb.append(", title='").append(title).append('\'');
+        final StringBuilder sb = new StringBuilder("BoardRequest{");
+        sb.append("title='").append(title).append('\'');
         sb.append(", content='").append(content).append('\'');
         sb.append('}');
         return sb.toString();
