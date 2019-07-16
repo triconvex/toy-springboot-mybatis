@@ -1,5 +1,6 @@
 package io.zingoworks.springbootmybatis.board;
 
+import io.zingoworks.springbootmybatis.exception.BoardNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,7 @@ public class BoardService {
     }
 
     public Board findById(long id) {
-        Board board = boardMapper.findById(id);
-
-        //TODO null 처리 개선필요
-        if(board == null) {
-            throw new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
-        }
-
-        return board;
+        return checkNotNull(id);
     }
 
     public void update(long id, Board target) {
@@ -32,7 +26,18 @@ public class BoardService {
     }
 
     public void delete(long id) {
+        checkNotNull(id);
         boardMapper.delete(id);
+    }
+
+    private Board checkNotNull(long id) {
+        Board board = boardMapper.findById(id);
+
+        if(board == null) {
+            throw new BoardNotFoundException("해당 게시물이 존재하지 않습니다.");
+        }
+
+        return board;
     }
 
 }

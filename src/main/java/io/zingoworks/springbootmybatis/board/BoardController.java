@@ -1,7 +1,5 @@
 package io.zingoworks.springbootmybatis.board;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,14 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/board")
 public class BoardController {
 
-    private static final Logger log = LoggerFactory.getLogger(BoardController.class);
-
-    private final BoardService boardService;
-
     @Autowired
-    public BoardController(BoardService boardService) {
-        this.boardService = boardService;
-    }
+    private BoardService boardService;
 
     @PostMapping
     public void create(@RequestBody BoardRequest boardRequest) {
