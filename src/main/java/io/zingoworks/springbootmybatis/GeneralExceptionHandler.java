@@ -24,7 +24,7 @@ public class GeneralExceptionHandler {
 
     private ResponseEntity<ApiResult> createResponse(Throwable throwable, HttpStatus status) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
+//        headers.add("Content-Type", "application/json"); 지정하는 이유?
         return new ResponseEntity<>(new ApiResult(throwable, status), headers, status);
     }
 

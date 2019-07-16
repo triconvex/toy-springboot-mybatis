@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class BoardControllerTest extends AcceptanceTest {
         ResponseEntity<ApiResult> responseEntity = template
                 .postForEntity("/board", new BoardRequest("test", "test"), ApiResult.class);
 
-        assertThat(responseEntity.getBody().getResponse()).isEqualTo("게시물 작성 성공했습니다");
+        assertThat(responseEntity.getBody().getResponse()).isEqualTo("게시물 작성 성공");
     }
 
     @Test
@@ -38,6 +40,8 @@ public class BoardControllerTest extends AcceptanceTest {
     public void B_존재하지않는_게시물_조회() {
         ResponseEntity<ApiResult> responseEntity = template
                 .getForEntity("/board/5", ApiResult.class);
+
+        System.out.println(responseEntity);
 
         assertThat(responseEntity.getBody().getError().getStatus()).isEqualTo(404);
     }
@@ -55,12 +59,10 @@ public class BoardControllerTest extends AcceptanceTest {
 
     @Test
     public void D_게시물_삭제() {
-        template.delete("/board/1");
-
         ResponseEntity<ApiResult> responseEntity = template
-                .getForEntity("/board/1", ApiResult.class);
+                .exchange("/board/1", HttpMethod.DELETE, HttpEntity.EMPTY, ApiResult.class);
 
-        log.debug("Selected Board : {}", responseEntity.getBody().getResponse());
+        assertThat(responseEntity.getBody().getResponse()).isEqualTo("게시물 삭제 성공");
     }
 
 }
