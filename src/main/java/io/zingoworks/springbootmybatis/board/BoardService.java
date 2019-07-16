@@ -14,7 +14,7 @@ public class BoardService {
         boardMapper.create(board);
     }
 
-    public Board findById(long id) {
+    public Board findById(Long id) {
         return checkNotNull(id);
     }
 
@@ -35,7 +35,7 @@ public class BoardService {
     private Board checkNotNull(long id) {
         Board board = boardMapper.findById(id);
 
-        if(board == null) {
+        if (board == null) {
             throw new BoardNotFoundException("해당 게시물이 존재하지 않습니다.");
         }
 

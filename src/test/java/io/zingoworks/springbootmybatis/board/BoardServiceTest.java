@@ -31,7 +31,9 @@ public class BoardServiceTest {
 
     @Test
     public void B_게시물_조회() {
-        assertThat(boardService.findById(1L)).isEqualTo(DEFAULT_BOARD);
+        assertThat(boardService.findById(null)).isEqualTo(DEFAULT_BOARD);
+
+//        assertThat(boardService.findById(1L)).isEqualTo(DEFAULT_BOARD);
     }
 
     @Test(expected = BoardNotFoundException.class)
@@ -49,7 +51,7 @@ public class BoardServiceTest {
 
     @Test(expected = BoardNotFoundException.class)
     public void C_존재하지않는_게시물_수정() {
-        Board target = new Board(1L, "update board", "updated content");
+        Board target = new Board("update board", "updated content");
         boardService.update(5L, target);
     }
 

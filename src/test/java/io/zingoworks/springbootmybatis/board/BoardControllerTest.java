@@ -50,8 +50,6 @@ public class BoardControllerTest {
         ResponseEntity<ApiResult> responseEntity = template
                 .getForEntity("/board/5", ApiResult.class);
 
-        System.out.println(responseEntity);
-
         assertThat(responseEntity.getBody().getError().getStatus()).isEqualTo(404);
     }
 
