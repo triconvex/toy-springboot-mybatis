@@ -12,14 +12,9 @@ public class SpringbootMybatisApplication {
 
 	/*
 	TODO
-		test coverage
 		mock test
-		acceptance test
 		exception
 		swagger
-		api result
-		docker-mariadb
 		default 생성자
-		도메인 생성자 속성 검증 guava
 	 */
 }
