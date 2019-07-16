@@ -10,4 +10,13 @@ public class SpringbootMybatisApplication {
 		SpringApplication.run(SpringbootMybatisApplication.class, args);
 	}
 
+	/*
+	TODO
+		lombok
+		test coverage
+		exception
+		swagger
+		docker-mariadb
+		api result
+	 */
 }

@@ -17,6 +17,11 @@ public class Board {
         this.content = content;
     }
 
+    public void update(Board board) {
+        this.title = board.title;
+        this.content = board.content;
+    }
+
     public long getId() {
         return id;
     }

@@ -33,6 +33,10 @@ public class BoardRequest {
         return new Board(title, content);
     }
 
+    public Board toBoard(long id) {
+        return new Board(id, title, content);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("BoardRequest{");

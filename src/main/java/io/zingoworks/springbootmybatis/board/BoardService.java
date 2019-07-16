@@ -1,38 +1,36 @@
 package io.zingoworks.springbootmybatis.board;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BoardService implements BoardMapper {
-
-    private static final Logger log = LoggerFactory.getLogger(BoardService.class);
-
-    private final BoardMapper boardMapper;
+public class BoardService {
 
     @Autowired
-    public BoardService(BoardMapper boardMapper) {
-        this.boardMapper = boardMapper;
-    }
+    private BoardMapper boardMapper;
 
-    @Override
     public void create(Board board) {
         boardMapper.create(board);
     }
 
-    @Override
     public Board findById(long id) {
-        return boardMapper.findById(id);
+        Board board = boardMapper.findById(id);
+
+        //TODO null 처리 개선필요
+        if(board == null) {
+            throw new IllegalArgumentException("해당 게시물이 존재하지 않습니다.");
+        }
+
+        return board;
     }
 
-    @Override
-    public void update(Board board) {
-        boardMapper.update(board);
+    public void update(long id, Board target) {
+        Board original = findById(id);
+        original.update(target);
+
+        boardMapper.update(original);
     }
 
-    @Override
     public void delete(long id) {
         boardMapper.delete(id);
     }

@@ -20,19 +20,17 @@ public class BoardController {
 
     @PostMapping
     public void create(@RequestBody BoardRequest boardRequest) {
-        log.debug("Board create : {}", boardRequest);
         boardService.create(boardRequest.toBoard());
     }
 
     @GetMapping("/{id}")
     public Board read(@PathVariable long id) {
-        log.debug("Read board({})", id);
         return boardService.findById(id);
     }
 
-    @PutMapping
-    public void update(Board board) {
-        boardService.update(board);
+    @PutMapping("/{id}")
+    public void update(@PathVariable long id, @RequestBody BoardRequest boardRequest) {
+        boardService.update(id, boardRequest.toBoard());
     }
 
     @DeleteMapping("/{id}")
