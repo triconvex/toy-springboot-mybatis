@@ -1,17 +1,17 @@
 package io.zingoworks.springbootmybatis.board;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.annotation.Order;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootTest()
-@RunWith(SpringRunner.class)
-public class BoardServiceTest {
+@SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class BoardServiceTest {
 
     private static final Logger log = LoggerFactory.getLogger(BoardServiceTest.class);
 
@@ -34,35 +34,15 @@ public class BoardServiceTest {
     @Order(3)
     @Test
     public void 게시물_수정() {
-//        boardService.update();
+        Board board = new Board(1L, "update board", "updated content");
+        boardService.update(board);
+        log.debug("update board : {}", boardService.findById(1L));
     }
 
     @Order(4)
     @Test
     public void 게시물_삭제() {
         boardService.delete(1L);
-    }
-
-    @Test
-    public void test() {
-        log.debug("test");
-
-        Board board = new Board(1L, "title", "content");
-
-        BoardRequest newBoard = new BoardRequest("title", "content");
-        boardService.create(board);
-        board = new Board(2L, "new title", "new content");
-        boardService.create(board);
-        System.out.println(boardService.findById(1L));
-        System.out.println(boardService.findById(2L));
-
-        Board updatedBoard = new Board(1L, "updated", "updated");
-        boardService.update(updatedBoard);
-        System.out.println(boardService.findById(1L));
-
-        boardService.delete(1L);
-        System.out.println(boardService.findById(1L));
-        log.debug("{}", boardService.findById(2L));
     }
 
 }
