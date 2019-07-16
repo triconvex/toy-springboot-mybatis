@@ -4,22 +4,22 @@
 
 <mapper namespace="io.zingoworks.springbootmybatis.board.BoardMapper">
     <insert id="create" parameterType="io.zingoworks.springbootmybatis.board.Board" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO BOARD
-        (TITLE,
-         CONTENT)
+        INSERT INTO board
+        (title,
+         content)
         VALUES (#{title},
                 #{content})
     </insert>
 
     <select id="findById" parameterType="java.lang.Long" resultType="io.zingoworks.springbootmybatis.board.Board">
         SELECT *
-        FROM BOARD
+        FROM board
         WHERE id = #{id}
     </select>
 
     <update id="update" parameterType="io.zingoworks.springbootmybatis.board.Board">
         UPDATE
-            BOARD
+            board
         SET title   = #{title},
             content = #{content}
         WHERE id = #{id}
@@ -27,7 +27,7 @@
 
     <delete id="delete" parameterType="java.lang.Long">
         DELETE
-        FROM BOARD
+        FROM board
         WHERE id = #{id}
     </delete>
 
