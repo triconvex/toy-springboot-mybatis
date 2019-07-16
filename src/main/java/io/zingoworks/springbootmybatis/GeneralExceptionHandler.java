@@ -1,6 +1,5 @@
 package io.zingoworks.springbootmybatis;
 
-import com.oracle.javafx.jmx.json.JSONException;
 import io.zingoworks.springbootmybatis.exception.BoardNotFoundException;
 import io.zingoworks.springbootmybatis.response.ApiResult;
 import org.slf4j.Logger;
@@ -36,8 +35,7 @@ public class GeneralExceptionHandler {
     @ExceptionHandler({
             IllegalStateException.class, IllegalArgumentException.class,
             TypeMismatchException.class, HttpMessageNotReadableException.class,
-            MissingServletRequestParameterException.class, MultipartException.class,
-            JSONException.class
+            MissingServletRequestParameterException.class, MultipartException.class
     })
     public ResponseEntity<?> handleBadRequestException(Exception e) {
         return createResponse(e, HttpStatus.BAD_REQUEST);

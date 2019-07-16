@@ -1,24 +1,33 @@
 package io.zingoworks.springbootmybatis.board;
 
 import io.zingoworks.springbootmybatis.response.ApiResult;
-import io.zingoworks.support.AcceptanceTest;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class BoardControllerTest extends AcceptanceTest {
+public class BoardControllerTest {
 
     private static final Logger log = LoggerFactory.getLogger(BoardControllerTest.class);
+
+    @Autowired
+    private TestRestTemplate template;
 
     @Test
     public void A_게시물_작성() {
