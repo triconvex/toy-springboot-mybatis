@@ -35,6 +35,7 @@ public class BoardServiceTest {
     public void C_게시물_수정() {
         Board board = new Board( "update board", "updated content");
         boardService.update(1L, board);
+
         log.debug("update board : {}", boardService.findById(1L));
     }
 

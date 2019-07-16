@@ -12,11 +12,12 @@ public class SpringbootMybatisApplication {
 
 	/*
 	TODO
-		lombok
 		test coverage
+		mock test
+		acceptance test
 		exception
 		swagger
-		docker-mariadb
 		api result
+		docker-mariadb
 	 */
 }
