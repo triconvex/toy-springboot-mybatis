@@ -1,6 +1,7 @@
 package io.zingoworks.springbootmybatis.board;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,17 +18,20 @@ public class BoardServiceTestByJupiter {
     @Autowired
     private BoardService boardService;
 
+    @Order(1)
     @Test
     public void A_게시물_작성() {
         Board board = new Board("test title", "test content");
         boardService.create(board);
     }
 
+    @Order(2)
     @Test
     public void B_게시물_조회() {
         boardService.findById(1L);
     }
 
+    @Order(3)
     @Test
     public void C_게시물_수정() {
         Board board = new Board( "update board", "updated content");
@@ -36,6 +40,7 @@ public class BoardServiceTestByJupiter {
         log.debug("update board : {}", boardService.findById(1L));
     }
 
+    @Order(4)
     @Test
     public void D_게시물_삭제() {
         boardService.delete(1L);

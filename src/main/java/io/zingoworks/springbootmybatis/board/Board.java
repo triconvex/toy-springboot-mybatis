@@ -1,14 +1,14 @@
 package io.zingoworks.springbootmybatis.board;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Board {
 
     private Long id;
@@ -20,6 +20,11 @@ public class Board {
     }
 
     public Board(Long id, String title, String content) {
+        checkArgument(2 <= title.length() && title.length() <= 20,
+                "Board title length must be between 2 ~ 20");
+        checkArgument(2 <= content.length() && content.length() <= 75,
+                "Board title length must be between 2 ~ 75");
+
         this.id = id;
         this.title = title;
         this.content = content;

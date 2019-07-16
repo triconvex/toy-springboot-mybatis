@@ -18,11 +18,13 @@ public class BoardService {
         return checkNotNull(id);
     }
 
-    public void update(long id, Board target) {
+    public Board update(long id, Board target) {
         Board original = findById(id);
         original.update(target);
 
         boardMapper.update(original);
+
+        return original;
     }
 
     public void delete(long id) {
