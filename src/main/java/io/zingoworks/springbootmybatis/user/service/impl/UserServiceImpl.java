@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -15,17 +16,17 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User create() {
+    public User create(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Optional<User> findById(long id) {
         return null;
     }
 
     @Override
-    public User findById(long id) {
-        return null;
-    }
-
-    @Override
-    public User findByUser(String name) {
+    public Optional<User> findByUser(String name) {
         return null;
     }
 
@@ -35,8 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(User user) {
-        return null;
+    public void update(User user) {
     }
 
     @Override
