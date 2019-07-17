@@ -1,7 +1,7 @@
-package io.zingoworks.springbootmybatis;
+package io.zingoworks.springbootmybatis.api.controller;
 
 import io.zingoworks.springbootmybatis.exception.BoardNotFoundException;
-import io.zingoworks.springbootmybatis.response.ApiResult;
+import io.zingoworks.springbootmybatis.api.response.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;

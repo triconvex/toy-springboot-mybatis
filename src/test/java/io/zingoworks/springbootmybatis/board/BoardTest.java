@@ -1,5 +1,6 @@
 package io.zingoworks.springbootmybatis.board;
 
+import io.zingoworks.springbootmybatis.board.model.Board;
 import org.junit.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;

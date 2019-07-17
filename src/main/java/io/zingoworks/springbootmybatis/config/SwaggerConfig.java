@@ -1,4 +1,4 @@
-package io.zingoworks.springbootmybatis;
+package io.zingoworks.springbootmybatis.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

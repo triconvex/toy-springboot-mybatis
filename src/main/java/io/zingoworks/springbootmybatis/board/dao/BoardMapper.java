@@ -1,5 +1,6 @@
-package io.zingoworks.springbootmybatis.board;
+package io.zingoworks.springbootmybatis.board.dao;
 
+import io.zingoworks.springbootmybatis.board.model.Board;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

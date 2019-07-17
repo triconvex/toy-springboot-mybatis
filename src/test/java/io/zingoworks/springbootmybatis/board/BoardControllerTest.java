@@ -1,6 +1,7 @@
 package io.zingoworks.springbootmybatis.board;
 
-import io.zingoworks.springbootmybatis.response.ApiResult;
+import io.zingoworks.springbootmybatis.board.model.BoardRequest;
+import io.zingoworks.springbootmybatis.api.response.ApiResult;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

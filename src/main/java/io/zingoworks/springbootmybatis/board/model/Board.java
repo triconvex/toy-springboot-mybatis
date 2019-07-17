@@ -1,4 +1,4 @@
-package io.zingoworks.springbootmybatis.board;
+package io.zingoworks.springbootmybatis.board.model;
 
 import lombok.*;
 

@@ -1,5 +1,7 @@
 package io.zingoworks.springbootmybatis.board;
 
+import io.zingoworks.springbootmybatis.board.model.Board;
+import io.zingoworks.springbootmybatis.board.service.BoardService;
 import io.zingoworks.springbootmybatis.exception.BoardNotFoundException;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

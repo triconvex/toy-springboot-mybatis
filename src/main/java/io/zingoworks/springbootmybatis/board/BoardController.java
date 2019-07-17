@@ -2,7 +2,10 @@ package io.zingoworks.springbootmybatis.board;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.zingoworks.springbootmybatis.response.ApiResult;
+import io.zingoworks.springbootmybatis.board.model.Board;
+import io.zingoworks.springbootmybatis.board.model.BoardRequest;
+import io.zingoworks.springbootmybatis.board.service.BoardService;
+import io.zingoworks.springbootmybatis.api.response.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

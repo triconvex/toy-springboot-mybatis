@@ -1,5 +1,7 @@
-package io.zingoworks.springbootmybatis.board;
+package io.zingoworks.springbootmybatis.board.service;
 
+import io.zingoworks.springbootmybatis.board.dao.BoardMapper;
+import io.zingoworks.springbootmybatis.board.model.Board;
 import io.zingoworks.springbootmybatis.exception.BoardNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

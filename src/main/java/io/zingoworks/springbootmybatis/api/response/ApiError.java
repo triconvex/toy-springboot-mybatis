@@ -1,4 +1,4 @@
-package io.zingoworks.springbootmybatis.response;
+package io.zingoworks.springbootmybatis.api.response;
 
 import lombok.AccessLevel;
 import lombok.Getter;
