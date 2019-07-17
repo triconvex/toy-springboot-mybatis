@@ -22,31 +22,30 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board findById(long id) {
-        checkNull(id);
-
-        Board board = boardMapper.findById(id);
-        return board;
+        return getExistBoard(id);
     }
 
-    @Transactional
+    @Transactional //트랜잭션의 경계, 글로벌 트랜잭션 정책
     @Override
     public void update(Board board) {
-        checkNull(board.getId());
+        getExistBoard(board.getId());
         boardMapper.update(board);
     }
 
     @Transactional
     @Override
     public void delete(long id) {
-        checkNull(id);
+        getExistBoard(id);
         boardMapper.delete(id);
     }
 
-    private void checkNull(long id) {
+    private Board getExistBoard(long id) { //메소드명, 반환타입
         Board board = boardMapper.findById(id);
         if(board == null) {
             throw new BoardNotFoundException("해당 게시물이 존재하지 않습니다.");
         }
+
+        return board;
     }
 
 }

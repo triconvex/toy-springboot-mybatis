@@ -7,16 +7,22 @@ import io.zingoworks.springbootmybatis.board.model.BoardRequest;
 import io.zingoworks.springbootmybatis.board.service.impl.BoardServiceImpl;
 import io.zingoworks.springbootmybatis.api.response.ApiResult;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/board") //boards 복수. 레스트풀
 @AllArgsConstructor
+@Slf4j //로거팩토리 마다 사이드이펙트
+//@Log4j
 public class BoardController {
     
-    private static final Logger log = LoggerFactory.getLogger(BoardController.class);
+//    private static final Logger log = LoggerFactory.getLogger(BoardController.class); //롬복 어노테이션
 
     private BoardServiceImpl boardServiceImpl;
 
@@ -24,7 +30,7 @@ public class BoardController {
     @PostMapping
     public ApiResult<String> create(
             @ApiParam(value = "작성 게시물 제목과 내용")
-            @RequestBody BoardRequest boardRequest)
+            @RequestBody @Valid BoardRequest boardRequest)
     {
         log.debug("create board");
 
@@ -39,7 +45,9 @@ public class BoardController {
             @ApiParam(value = "조회하는 게시물의 id")
             @PathVariable long id)
     {
-        log.debug("read board({})", id);
+        if(log.isDebugEnabled()) { //log isDebugEnabled, 로거 구현체가 여러개일 때, 스프링의 로그정책
+            log.debug("read board({})", id);
+        }
         return new ApiResult<>(boardServiceImpl.findById(id));
     }
 
@@ -49,10 +57,12 @@ public class BoardController {
             @ApiParam(value = "수정하려는 게시물의 id")
             @PathVariable long id,
             @ApiParam(value = "수정 된 제목과 내용")
-            @RequestBody BoardRequest boardRequest)
+            @RequestBody @Valid BoardRequest boardRequest)
     {
-        log.debug("modify board");
+        log.debug("modify board"); //마찬가지 로그
 
+        //부수효과
+        //board request to entity 인자
         Board target = Board.builder()
                 .id(id)
                 .title(boardRequest.getTitle())

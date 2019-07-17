@@ -14,7 +14,8 @@ public class ApiResult<T> {
 
     public ApiResult(T response) {
         this.response = response;
-        this.success = true;
+        this.success = true; //enum으로 방어적코딩, success의 필요성(?), status code가 이미 있음
+        //지금은 success, status code 둘다 고려해야함
     }
 
     public ApiResult(String message, HttpStatus status) {

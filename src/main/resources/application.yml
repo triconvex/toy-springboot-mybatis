@@ -10,3 +10,9 @@ spring:
     password: root
 mybatis:
   mapper-locations: mapper/*.xml
+
+#테스트커버리지 확인방법
+#드라이버네임이 빠졌을때
+#jpa로
+# 클라이언트 렌더링 화면까지 로그인
+# 타임리프 왜 권장?

@@ -47,6 +47,14 @@ public class BoardControllerTest {
     }
 
     @Test
+    public void B_게시물_조회_스트링타입() throws IOException {
+        ResponseEntity<ApiResult> responseEntity = template
+                .getForEntity("/board/a", ApiResult.class); //assertion 필요, string 타입에 대한 테스트 필요
+
+        log.debug("Selected Board : {}", responseEntity.getBody().getResponse());
+    }
+
+    @Test
     public void B_존재하지않는_게시물_조회() {
         ResponseEntity<ApiResult> responseEntity = template
                 .getForEntity("/board/5", ApiResult.class);
@@ -57,6 +65,17 @@ public class BoardControllerTest {
     @Test
     public void C_게시물_수정() {
         BoardRequest target = new BoardRequest("updated", "updated");
+        template.put("/board/1", target);
+
+        ResponseEntity<ApiResult> responseEntity = template
+                .getForEntity("/board/1", ApiResult.class);
+
+        log.debug("Selected Board : {}", responseEntity.getBody().getResponse());
+    }
+
+    @Test
+    public void C_게시물_수정_유효성() {
+        BoardRequest target = new BoardRequest("u", "updated");
         template.put("/board/1", target);
 
         ResponseEntity<ApiResult> responseEntity = template

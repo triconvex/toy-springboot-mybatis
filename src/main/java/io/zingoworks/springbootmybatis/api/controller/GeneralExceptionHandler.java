@@ -22,12 +22,16 @@ public class GeneralExceptionHandler {
     private Logger log = LoggerFactory.getLogger(getClass());
 
     private ResponseEntity<ApiResult> createResponse(Throwable throwable, HttpStatus status) {
+        if(log.isErrorEnabled()) {
+            throwable.printStackTrace();
+//            log.error("error occured : {}", throwable.); //에러 스택트레이스 찍기
+        }
         HttpHeaders headers = new HttpHeaders();
 //        headers.add("Content-Type", "application/json"); 지정하는 이유?
         return new ResponseEntity<>(new ApiResult(throwable, status), headers, status);
     }
 
-    @ExceptionHandler(BoardNotFoundException.class)
+    @ExceptionHandler(BoardNotFoundException.class) //에러 발생 시 로그
     public ResponseEntity<?> handleBoardNotFoundException(Exception e) {
         return createResponse(e, HttpStatus.NOT_FOUND);
     }
