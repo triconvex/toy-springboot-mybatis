@@ -1,7 +1,7 @@
-package io.zingoworks.springbootmybatis.board;
+package io.zingoworks.springbootmybatis.board.service;
 
 import io.zingoworks.springbootmybatis.board.model.Board;
-import io.zingoworks.springbootmybatis.board.service.BoardService;
+import io.zingoworks.springbootmybatis.board.service.impl.BoardServiceImpl;
 import io.zingoworks.springbootmybatis.exception.BoardNotFoundException;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -10,61 +10,62 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class BoardServiceTest {
+public class BoardServiceImplTest {
 
     private static final Board DEFAULT_BOARD = new Board(1L, "test title", "test content");
 
     @Autowired
-    private BoardService boardService;
+    private BoardServiceImpl boardServiceImpl;
 
     @Test
     public void A_게시물_작성() {
         Board board = new Board("test title", "test content");
-        boardService.create(board);
+        boardServiceImpl.create(board);
 
-        assertThat(boardService.findById(1L)).isEqualTo(DEFAULT_BOARD);
+        assertThat(boardServiceImpl.findById(1L)).isEqualTo(DEFAULT_BOARD);
     }
 
     @Test
     public void B_게시물_조회() {
-        assertThat(boardService.findById(null)).isEqualTo(DEFAULT_BOARD);
-
-//        assertThat(boardService.findById(1L)).isEqualTo(DEFAULT_BOARD);
+        assertThat(boardServiceImpl.findById(1L)).isEqualTo(DEFAULT_BOARD);
     }
 
     @Test(expected = BoardNotFoundException.class)
     public void B_존재하지않는_게시물_조회() {
-        boardService.findById(5L);
+        boardServiceImpl.findById(5L);
     }
 
     @Test
+    @Transactional
     public void C_게시물_수정() {
         Board target = new Board(1L, "update board", "updated content");
-        boardService.update(1L, target);
+        boardServiceImpl.update(target);
 
-        assertThat(boardService.findById(1L)).isEqualTo(target);
+        assertThat(boardServiceImpl.findById(1L)).isEqualTo(target);
     }
 
     @Test(expected = BoardNotFoundException.class)
     public void C_존재하지않는_게시물_수정() {
-        Board target = new Board("update board", "updated content");
-        boardService.update(5L, target);
+        Board target = new Board(5L, "update board", "updated content");
+        boardServiceImpl.update(target);
     }
 
     @Test
+    @Transactional
     public void D_게시물_삭제() {
-        boardService.delete(1L);
+        boardServiceImpl.delete(1L);
     }
 
     @Test(expected = BoardNotFoundException.class)
     public void D_존재하지않는_게시물_삭제() {
-        boardService.delete(5L);
+        boardServiceImpl.delete(5L);
     }
 
 }

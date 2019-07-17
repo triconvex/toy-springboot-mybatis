@@ -4,20 +4,23 @@ import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode
-@ToString
+@NoArgsConstructor
 public class BoardRequest {
 
     private String title;
     private String content;
 
+    @Builder
     public BoardRequest(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    public Board toBoard() {
-        return new Board(title, content);
+    public Board toEntity() {
+        return Board.builder()
+                .title(title)
+                .content(content)
+                .build();
     }
 
 }

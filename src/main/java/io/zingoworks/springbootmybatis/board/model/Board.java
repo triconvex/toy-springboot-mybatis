@@ -4,11 +4,10 @@ import lombok.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Setter
 @EqualsAndHashCode
 @ToString
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Board {
 
     private Long id;
@@ -19,6 +18,7 @@ public class Board {
         this(null, title, content);
     }
 
+    @Builder
     public Board(Long id, String title, String content) {
         checkArgument(2 <= title.length() && title.length() <= 20,
                 "Board title length must be between 2 ~ 20");
