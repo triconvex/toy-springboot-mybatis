@@ -4,12 +4,12 @@ import io.zingoworks.springbootmybatis.board.model.Board;
 
 public interface BoardService {
 
-    void create(Board board);
+    Board create(Board board);
 
     Board findById(long id);
 
-    void update(Board board);
+    Board update(Board board);
 
-    void delete(long id);
+    long delete(long id);
 
 }

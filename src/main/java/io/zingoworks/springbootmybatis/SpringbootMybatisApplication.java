@@ -10,11 +10,4 @@ public class SpringbootMybatisApplication {
 		SpringApplication.run(SpringbootMybatisApplication.class, args);
 	}
 
-	/*
-	TODO
-		mock test
-		exception
-		swagger
-		default 생성자
-	 */
 }
