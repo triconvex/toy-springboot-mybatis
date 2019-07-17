@@ -10,7 +10,8 @@
     </appender>
 
     <logger name="io.zingoworks" level="DEBUG"/>
-    <logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="ERROR" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.type" level="TRACE" />
 
     <root level="INFO">
         <appender-ref ref="console"/>

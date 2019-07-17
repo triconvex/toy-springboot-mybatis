@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByUser(String name) {
+        return null;
+    }
+
+    @Override
     public List<User> findAll() {
         return null;
     }
@@ -35,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(long id) {
+    public void deleteById(long id) {
 
     }
 
