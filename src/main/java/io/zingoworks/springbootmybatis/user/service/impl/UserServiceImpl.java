@@ -26,13 +26,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByUser(String name) {
+    public Optional<User> findByName(String name) {
         return null;
     }
 
     @Override
     public List<User> findAll() {
-        return null;
+        List<User> users = userRepository.findAll();
+        return users;
     }
 
     @Override

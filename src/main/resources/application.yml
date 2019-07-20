@@ -10,6 +10,8 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+#      validate <- DB 스키마 안맞으면 서버 안뜸
+#      update로 두면 컬럼추가 시 제일 마지막에
     show-sql: true
     properties:
       hibernate.format_sql: true
