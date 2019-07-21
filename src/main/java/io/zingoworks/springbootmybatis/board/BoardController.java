@@ -25,7 +25,7 @@ public class BoardController {
     public ApiResult<String> create(
             @RequestBody @Valid BoardRequest boardRequest)
     {
-        log.debug("create board");
+        log.debug("save board");
 
         Board board = boardRequest.toEntity();
         boardServiceImpl.create(board);

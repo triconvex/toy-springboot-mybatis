@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Setter
 @ToString
 @Entity
 public class User {
@@ -28,5 +27,12 @@ public class User {
         this.password = password;
     }
 
-    //TODO noargs쓰면 클래스단위 빌더 못쓰나?
+    public User update(User target) {
+        if(!this.password.equals(target.password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        this.name = target.name;
+        return this;
+    }
 }
