@@ -2,6 +2,7 @@ package io.zingoworks.springbootmybatis.user.service.impl;
 
 import io.zingoworks.springbootmybatis.user.dao.UserRepository;
 import io.zingoworks.springbootmybatis.user.model.User;
+import io.zingoworks.springbootmybatis.user.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 public class UserServiceImplTest {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -47,7 +48,7 @@ public class UserServiceImplTest {
 
     @Test
     public void findById() {
-        User user = userService.save(defaultUser);
+        User user = userRepository.save(defaultUser);
         User selected = userService.findById(user.getId()).orElse(null);
 
         assertThat(selected).isNotNull();
@@ -57,7 +58,7 @@ public class UserServiceImplTest {
 
     @Test
     public void findByName() {
-        User user = userService.save(defaultUser);
+        User user = userRepository.save(defaultUser);
         User selected = userService.findByName(user.getName()).orElse(null);
 
         assertThat(selected).isNotNull();
@@ -67,17 +68,15 @@ public class UserServiceImplTest {
 
     @Test
     public void findAll() {
-        userService.save(defaultUser);
-        userService.save(defaultUser);
-        userService.save(defaultUser);
+        userRepository.save(defaultUser);
 
         List<User> users = userService.findAll();
-        assertThat(users.size()).isEqualTo(3);
+        assertThat(users.size()).isEqualTo(1);
     }
 
     @Test
     public void update() {
-        User original = userService.save(defaultUser);
+        User original = userRepository.save(defaultUser);
         User target = User.builder()
                 .id(original.getId())
                 .name("updated")
@@ -92,7 +91,7 @@ public class UserServiceImplTest {
 
     @Test
     public void deleteById() {
-        User user = userService.save(defaultUser);
+        User user = userRepository.save(defaultUser);
         userService.deleteById(user.getId());
         User deleted = userRepository.findById(user.getId()).orElse(null);
 
@@ -101,7 +100,7 @@ public class UserServiceImplTest {
 
     @Test(expected = EmptyResultDataAccessException.class)
     public void deleteById_doesnt_exist() {
-        userRepository.deleteById(0L);
+        userService.deleteById(0L);
     }
 
 }

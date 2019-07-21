@@ -27,7 +27,7 @@ public class GeneralExceptionHandler {
 //            log.error("error occured : {}", throwable.); //에러 스택트레이스 찍기
         }
         HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Type", "application/json"); 지정하는 이유?
+//        headers.save("Content-Type", "application/json"); 지정하는 이유?
         return new ResponseEntity<>(new ApiResult(throwable, status), headers, status);
     }
 
